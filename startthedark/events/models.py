@@ -12,14 +12,14 @@ def today():
 
 class EventQuerySet(QuerySet):
     def today(self):
-        return self.filter(cration_date__range=today())
+        return self.filter(creation_date__range=today())
 
 class EventManager(models.Manager):
     def get_query_set(self):
 	return EventQuerySet(self.model)
 
     def today(self):
-        self.get_query_set().today()
+        return self.get_query_set().today()
 
 class Event(models.Model):
     description = models.TextField()
@@ -35,8 +35,8 @@ class Event(models.Model):
         return self.description
 
     def save(self, **kwargs):
-        Event.objects.filter(latest=True,
-            creator=self.creator).today().update(latest=False)
+        Event.objects.today().filter(latest=True,
+            creator=self.creator).update(latest=False)
         super(Event, self).save(**kwargs)
 
 class Attendance(models.Model):
