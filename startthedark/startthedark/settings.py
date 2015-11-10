@@ -15,9 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ADMIN = (
-	('dokyun', 'doil1205@gmail.com'),
-)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -30,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ADMINS = (
+	('dokyun', 'doil1205@gmail.com'),
+)
+MANAGERS = ADMINS
 
 # Application definition
 
@@ -81,10 +82,15 @@ WSGI_APPLICATION = 'startthedark.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'dev.db'),
     }
 }
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = 'http://localhost:8000/media/admin/'
+LOGIN_REDIRECT_URL = '/events/archive'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
