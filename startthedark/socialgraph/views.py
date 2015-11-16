@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import Http404, HtpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from socialgraph.util import get_people_user_follows, get_people_following_user
 from socialgraph.util import get_mutual_followers
